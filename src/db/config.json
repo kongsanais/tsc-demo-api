@@ -1,0 +1,4 @@
+  
+{
+    "connectionString": "mongodb://localhost/hr-project-api"
+}
