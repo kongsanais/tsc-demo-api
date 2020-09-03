@@ -1,4 +1,4 @@
   
 {
-    "connectionString": "mongodb://localhost/hr-project-api"
+    "connectionString": "mongodb://localhost/TSC-project"
 }

@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { email } = require('vuelidate/lib/validators')
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -91,6 +90,29 @@ const userSchema = new mongoose.Schema({
     job_salary:{
         type: String 
     },
+    education:{
+        type: String 
+    },
+    degree_education:{
+        type: String  
+    },
+    majoy_education:{
+        type: String
+    },
+    gpa:{
+        type: String 
+    },
+    role:{
+        type: String 
+    },
+    reg_status:{
+        type: String,
+        default: 'Waitting'
+    },
+    reg_date:{
+        type:Date,
+        default:  new Date().toISOString().slice(0, 10)
+    },
     tokens: [{
         token: {
             type: String,
@@ -117,10 +139,8 @@ userSchema.methods.toJSON = function () {
 userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ _id: user._id.toString() }, 'thisismynewcourse')
-
     user.tokens = user.tokens.concat({ token })
     await user.save()
-
     return token
 }
 
